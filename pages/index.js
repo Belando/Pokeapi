@@ -1,5 +1,6 @@
-
+import React from "react"
 import Link from 'next/link'
+
 
 export default function Home({ pokemonData }) {
 
@@ -10,7 +11,10 @@ export default function Home({ pokemonData }) {
       {pokemonData.map((pokemon) => {
         return (
           <li>
-            <Link href="">
+            <Link href={{
+              pathname: '/pokemon/[name]',
+              query: { name: pokemon.name}
+            }}>
               <div>
                 <div>
                   <h3>{pokemon.name}</h3>
