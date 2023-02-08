@@ -5,6 +5,8 @@ export default function Pokemon({ data }) {
     console.log("data", data.stats)
 
     return (
+
+        <><marquee style={{ background: '#f1f1f1', color: 'purple' }}>&bull; 📑 Listado de Pokémon &bull; 📟 PokeApi &bull; 👁‍🗨{data.name} &bull;  </marquee>
         <div>
             <div>
                 <div>
@@ -13,7 +15,7 @@ export default function Pokemon({ data }) {
                         as: '/'
                     }}>
                         <svg width="18" height="25" viewBox="0 0 18 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 2L2 12.5L16 23.5" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M16 2L2 12.5L16 23.5" stroke="black" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </Link>
 
@@ -36,37 +38,35 @@ export default function Pokemon({ data }) {
                         height="200" />
                 </div>
                 <div>
+                <h4>Estadísticas</h4>
                     {data.stats.map((data, index) => (
                         <div key={index}>
                             <h3>{data.stat.name}</h3>
+                            <p>{data.base_stat}</p>
                         </div>
                     ))}
                 </div>
                 <div>
-                    {data.stats.map((data, index) => (
-                        <div key={index}>
-                            <h3>{data.base_stat}</h3>
-                        </div>
-                    ))}
-                </div>
-                <div>
+                <h4>Habilidades</h4>
                     {data.abilities.map((data, index) => (
                         <div key={index}>
-                            <h3>{data.ability.name}</h3>
+                            <p>{data.ability.name}</p>
                         </div>
                     ))}
                 </div>
                 <div>
+                <h4>Movimientos</h4>
                     {data.moves.map((data, index) => (
-                        <div key={index}>
-                            <span>{data.move.name}</span>
-                        </div>
+                        <li key={index}>
+                            {data.move.name}
+                        </li>
                     ))}
                 </div>
             </div>
             <div>
             </div>
         </div>
+        </>
     )
 }
 

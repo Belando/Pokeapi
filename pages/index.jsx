@@ -7,13 +7,13 @@ export default function Home({ pokemonData }) {
   console.log("pokemonData", pokemonData)
   return (
 
-    <ul>
+    <><marquee style={{ background: '#f1f1f1', color: 'purple' }}> 📑 Listado de Pokémon &bull; 📟 PokeApi &bull; 🎮 Hazte con todos</marquee><ul>
       {pokemonData.map((pokemon) => {
         return (
           <li>
             <Link href={{
               pathname: '/pokemon/[name]',
-              query: { name: pokemon.name}
+              query: { name: pokemon.name }
             }}>
               <div>
                 <div>
@@ -32,7 +32,7 @@ export default function Home({ pokemonData }) {
           </li>
         )
       })}
-    </ul>
+    </ul></>
   )
 }
 
