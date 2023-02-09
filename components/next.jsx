@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Button } from "@material-tailwind/react";
 
 const PokemonList = () => {
     const [page, setPage] = useState(1);
@@ -25,7 +26,7 @@ const PokemonList = () => {
     return (
         <div>
             <Link href={`/${page + 1}`}>
-                <button onClick={handleClick}>Next</button>
+                <Button size="md" onClick={handleClick}>Next</Button>
             </Link>
             {pokemon.map((p) => (
                 <p key={p.name}>{p.name}</p>

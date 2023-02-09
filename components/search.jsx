@@ -1,7 +1,10 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import design from "../styles/Pokemon.module.css"
-
+import { Button } from "@material-tailwind/react";
+import { Alert } from "@material-tailwind/react";
+import { Input } from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, Typography, } from "@material-tailwind/react";
+import Image from "next/image";
 
 const Search = () => {
     const [pokemon, setPokemon] = useState(null);
@@ -17,7 +20,22 @@ const Search = () => {
         try {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
             if (!response.ok) {
-                setError("No existen pokémons con ese nombre");
+                setError(<Alert icon={
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="h-6 w-6"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                    </svg>
+                } color="red">No existen Pokémons con ese nombre</Alert>);
                 return;
             }
             const data = await response.json();
@@ -28,27 +46,33 @@ const Search = () => {
     };
 
     return (
-        <div>
+        <div className="flex w-72 flex-col justify-center content-center gap-2">
             <form onSubmit={handleSubmit}>
-                <input type="text" value={name} onChange={e => setName(e.target.value)} />
-                <button type="submit">Search</button>
+                <Input color="purple" label="Busca tu pokémon" type="text" value={name} onChange={e => setName(e.target.value)} />
+                <Button type="submit" color="purple">Search</Button>
             </form>
             {error && (
-                <div className={design.error}>{error}</div>
+                <div>{error}</div>
             )}
             {pokemon && (
                 <Link href={{
                     pathname: '/pokemon/[name]',
                     query: { name: pokemon.name }
                 }}>
-                    <div>
-                        <h2>{pokemon.name}</h2>
-                        {pokemon.types.map((pokemon, index) => (
-                            <div key={index}>
-                                <h4>{pokemon.type.name}</h4>
-                            </div>))}
-                        <img src={pokemon.sprites.other.dream_world.front_default}></img>
-                    </div>
+                    <Card className="w-40">
+                      <CardHeader floated={false} className="h-50">
+                        <Image src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} height="100" width={100} />
+                      </CardHeader>
+                      <CardBody className="text-center">
+                        <Typography variant="h4" color="blue-gray" className="mb-2">
+                          {pokemon.name}
+                        </Typography>
+                        <Typography color="blue" className="font-medium" textGradient>
+                          {pokemon.types.map((pokemon, index) => <h4 key={index}>{pokemon.type.name}</h4>)
+                          }
+                        </Typography>
+                      </CardBody>
+                    </Card>  
                 </Link>
             )}
         </div>

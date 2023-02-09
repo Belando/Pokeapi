@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import foodStyle from '../styles/Food.module.css'
+
 
 const RandomMeal = () => {
   const [meal, setMeal] = useState(null);
@@ -14,11 +14,10 @@ const RandomMeal = () => {
   }, []);
 
   return (
-    <div className={foodStyle.all}>
+    <div>
       {meal && (
         <>
-          <h5>Nuestra recomendación es:</h5>
-          <img className={foodStyle.photo} src={meal.strMealThumb} alt={meal.strMeal} />
+          <img className='comida' src={meal.strMealThumb} alt={meal.strMeal} />
           <h3>{meal.strMeal}</h3>
           <p>{meal.strArea}</p>
           <p>{meal.strCategory}</p>
