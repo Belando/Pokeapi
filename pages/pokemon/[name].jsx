@@ -53,7 +53,7 @@ export default function Pokemon({ data }) {
                         <Typography variant="h1" color="black" className="mb-2">
                             {data.name}
                         </Typography>
-                        <Typography variant="p" color="black" className="mb-2">
+                        <Typography variant="small" color="black" className="mb-2">
                             #00{data.id}
                         </Typography>
                         <Typography color="blue" className="font-medium" variant="h4" textGradient>
@@ -61,11 +61,11 @@ export default function Pokemon({ data }) {
                                 {data.types.map((poke, index) => <div key={index} className={styles.type2}>{poke.type.name}</div>)}
                             </div>
                         </Typography>
-                        <Typography color="blue" variant="p" className="font-medium" >
+                        <Typography color="blue" variant="small" className="font-medium" >
                             {data.weight} Kg
                         </Typography>
-                        <br></br>
-                        <Image src={data.sprites.other.dream_world.front_default} alt={data.name} height="400" width={400} />
+                        
+                        <Image src={data.sprites.other.dream_world.front_default} alt={data.name} height="200" width={400} />
                         <br></br>
                     </div>
                     <br></br>
@@ -107,7 +107,7 @@ export default function Pokemon({ data }) {
                                     </Typography>
                                 </AccordionHeader>
                                 <AccordionBody>
-                                    <Typography color="blue" variant="p" className="font-medium" >
+                                    <Typography color="blue" variant="small" className="font-medium" >
                                         <div className="listado" >
                                             <ul>
                                                 {data.moves.map((data, index) => (
@@ -127,7 +127,7 @@ export default function Pokemon({ data }) {
 
                 <div className="detail flex flex-col items-center">
                     <div className="frase2 flex flex-col items-center">
-                        <p>Nuestro plato para <b>{data.name}</b> es</p><RandomMeal />
+                        <span>Nuestro plato para <b>{data.name}</b> es</span><RandomMeal />
                     </div>
                 </div>
                 <br></br>

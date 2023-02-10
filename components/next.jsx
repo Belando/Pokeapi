@@ -40,9 +40,10 @@ const PokemonList = () => {
         <div>
             <Button size="md" color="purple" onClick={handlePrevClick}>Anterior</Button>
             <Button size="md" color="purple" onClick={handleNextClick}>Siguiente</Button>
-            {pokemon.map((p) => (
+            {/* {pokemon.map((p) => (
                 <p key={p.name}>{p.name}</p>
-            ))}
+            ))} */} 
+            {/* {WORKING ON IT} */}
         </div>
     );
 };
