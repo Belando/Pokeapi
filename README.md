@@ -9,6 +9,7 @@ Se pide una pokeApi en la que se cumplan los siguientes requisitos:
 
 ## Estructura: Pages
 # Vista principal index.jsx:
+![alt text](https://github.com/[Belando]/[pokeapi_ofipol]/public/index.jpg?raw=true)
 Sección Marquee en el Header, Barra de búsqueda con errores, Listado de pokemon con componente Accordion para poder plegarlo, Botones de navegación hacia la siguiente página o la anterior
 
 # Vista detalle [name].jsx:

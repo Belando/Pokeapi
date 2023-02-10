@@ -69,7 +69,7 @@ export default function Home({ pokemonData }) {
                             }
                           </div>
                         </div>
-                        <img src={pokemon.image} alt={pokemon.name} width={100} height={100} className={styles.image} />
+                        <img src={pokemon.image} alt={pokemon.name} width={100} height={60} className={styles.image} />
                       </div>
                     </Link>
                   </div>)
@@ -95,7 +95,7 @@ export async function getServerSideProps() {
       .then(data => data)
   }
 
-  for (let i = 1; i <= 25; i++) {
+  for (let i = 1; i <= 30; i++) {
     let data = await getPokemon(i)
     arrayPokemon.push(data)
   }
