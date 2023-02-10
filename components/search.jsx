@@ -20,7 +20,7 @@ const Search = () => {
         try {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
             if (!response.ok) {
-                setError(<Alert icon={
+                setError(<Alert className="flex justify-center"style={{marginLeft: "auto", marginRight: "auto",  width: "100%"}} icon={
                     <svg 
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -46,7 +46,7 @@ const Search = () => {
     return (
         <div className="flex w-72 flex-col justify-center gap-1">
             <form className="flex justify-center" onSubmit={handleSubmit}>
-                <Input color="purple" background="red" label="Busca tu pokémon" type="text" value={name} style={{ backgroundColor: "white", padding: "10px", borderRadius: "5px"}} onChange={e => setName(e.target.value)} />
+                <Input color="purple" label="Busca tu pokémon" type="text" value={name} style={{ backgroundColor: "white", padding: "10px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto"}} onChange={e => setName(e.target.value)} />
                 <Button className="center-button" type="submit" color="purple">Buscar</Button>
             </form>
             {error && (
@@ -58,9 +58,7 @@ const Search = () => {
                     query: { name: pokemon.name }
                 }}>
                     <Card className="w-60">
-                        <CardHeader floated={false} className="h-60">
                             <Image src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} height="200" width={200} />
-                        </CardHeader>
                         <CardBody className="text-center">
                             <Typography variant="h4" color="blue-gray" className="mb-2">
                                 {pokemon.name}

@@ -33,20 +33,20 @@ export default function Home({ pokemonData }) {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <marquee style={{ background: '#f1f1f1', color: 'purple' }}> 📑 Listado de Pokémon &bull; 📟 PokeApi &bull; 🎮 Hazte con todos</marquee>
+      <marquee style={{ height: 30, fontSize: "20px", background: '#f1f1f1', color: 'purple' }}> 📑 Listado de Pokémon &bull; 📟 PokeApi &bull; 🎮 Hazte con todos</marquee>
 
       <br></br>
       <br></br>
 
       <Search></Search>
-      
+
       <br></br>
       <br></br>
-      
+
       <Fragment>
         <Accordion open={open === 1} icon={<Icon id={1} open={open} />} >
           <AccordionHeader className="flex justify-center" onClick={() => handleOpen(1)}>
-            <Typography variant="h2" color="black" className="mb-2">
+            <Typography variant="h2" color="white" className="mb-2">
               Listado de Pokemon
             </Typography>
           </AccordionHeader>
@@ -54,25 +54,25 @@ export default function Home({ pokemonData }) {
             <div className="listado">
               <ul>
                 {pokemonData.map((pokemon) => (
-                  <li key={pokemon.id}>
+                  <div key={pokemon.id}>
                     <Link href={{
                       pathname: '/pokemon/[name]',
                       query: { name: pokemon.name }
                     }}>
                       <div className={`${styles.card} ${pokemon.types[0].type.name}`}>
-                        <div className={styles.nombreTipos}>
+                        <div className={styles.nameTypes}>
                           <h3 exit={{ opacity: 0 }}>{pokemon.name}</h3>
-                          <div className={styles.tipos}>
+                          <div className={styles.types}>
                             {pokemon.types.map((poke, index) => {
-                              return (<div key={index} className={styles.tipo}>{poke.type.name}</div>)
+                              return (<div key={index} className={styles.type}>{poke.type.name}</div>)
                             })
                             }
                           </div>
                         </div>
+                        <img src={pokemon.image} alt={pokemon.name} width={100} height={100} className={styles.image} />
                       </div>
-                      <img src={pokemon.image} alt={pokemon.name} width={100} height={100} className={styles.image} />
                     </Link>
-                  </li>)
+                  </div>)
                 )}
 
               </ul>
@@ -82,7 +82,7 @@ export default function Home({ pokemonData }) {
       </Fragment >
       <br></br>
       <br></br>
-      <PokemonList></PokemonList>    
+      <PokemonList></PokemonList>
     </div >
   )
 }

@@ -9,6 +9,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: rgba(138, 87, 208, 0.275);
+  width: 100%
 }
 
 a {
@@ -24,6 +25,8 @@ a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 15px;
+  margin-left: 5px;
+  margin-right: 15px;
 }
 
 .comida{
@@ -32,14 +35,35 @@ a {
   width: 300px;
 }
 
+.frase{
+  color: rgb(33 150 243 );
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.frase2{
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+
 .center-button {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.button2 {
+  margin-left: 5px;
+  color: purple;
+  display: flex;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
 .detail{
-  width: 45%;
+  width: 70%;
   margin-left:auto;
   margin-right: auto;
   border-width: 1px;
@@ -51,6 +75,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
 
 .bug {
   background: #aedf78;
