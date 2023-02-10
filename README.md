@@ -39,9 +39,9 @@ Se pide una aplicación que use la PokeApi® en la que se cumplan los siguientes
 - Si no se busca nada el botón queda inutilizado
 
 ## Elementos utilizados 🛠
-# Hooks React
+### Hooks React
 - de Estado y de efecto: useState y useEffect, Fragment
-# Next.js
+### Next.js
 - getServerSideProps para el fetch de los datos
 - Axios para la petición a (TheMealDB)
 
@@ -57,4 +57,4 @@ Se pide una aplicación que use la PokeApi® en la que se cumplan los siguientes
 - Botones de vista previa y siguiente no muestran correctamente los datos 
 - Mejora estética de la parte del detalle
 
-#
+### Ha sido una experiencia enriquecedora en la que seguiré trabajando, si te ha gustado deja tu feedback y muchas gracias!! ✨
