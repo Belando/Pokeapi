@@ -26,7 +26,7 @@ const PokemonList = () => {
     return (
         <div>
             <Link href={`/${page + 1}`}>
-                <Button size="md" onClick={handleClick}>Next</Button>
+                <Button size="md" color="purple" onClick={handleClick}>Siguiente</Button>
             </Link>
             {pokemon.map((p) => (
                 <p key={p.name}>{p.name}</p>

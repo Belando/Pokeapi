@@ -1,23 +1,12 @@
 import React from "react"
 import Link from 'next/link'
-import Image from "next/image"
+import styles from '../styles/Home.module.css'
 import Search from "@/components/search"
-import PokemonList from "@/components/next"
-import { ThemeProvider } from "@material-tailwind/react";
 import { Fragment, useState } from "react";
-import { Accordion, AccordionHeader, AccordionBody, } from "@material-tailwind/react";
-import { Card, CardHeader, CardBody, Typography, } from "@material-tailwind/react";
-
+import { Accordion, AccordionHeader, AccordionBody, Typography } from "@material-tailwind/react";
+import PokemonList from "@/components/next";
 
 export default function Home({ pokemonData }) {
-
-  const pokeTheme = {
-    component: {
-      defaultProps: {},
-      valid: {},
-      styles: {},
-    }
-  }
 
   const [open, setOpen] = useState(1);
 
@@ -25,56 +14,76 @@ export default function Home({ pokemonData }) {
     setOpen(open === value ? 0 : value);
   };
 
+  function Icon({ id, open }) {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={`${id === open ? "rotate-180" : ""
+          } h-10 w-10 transition-transform`}
+        fill="none"
+        viewBox="0 -4 24 24"
+        stroke="purple"
+        strokeWidth={3}
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    );
+  }
+
 
   return (
-    <ThemeProvider value={pokeTheme} bg= "#c7d2fe">
-      <div className="flex flex-col items-center justify-center min-h-screen py-2 #c7d2fe">
-        <marquee style={{ background: '#f1f1f1', color: 'purple' }}> 📑 Listado de Pokémon &bull; 📟 PokeApi &bull; 🎮 Hazte con todos</marquee>
+    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+      <marquee style={{ background: '#f1f1f1', color: 'purple' }}> 📑 Listado de Pokémon &bull; 📟 PokeApi &bull; 🎮 Hazte con todos</marquee>
 
-        <Search></Search>
-        <br></br>
-        <br></br>
+      <br></br>
+      <br></br>
 
-        <Fragment>
-          <Accordion open={open === 1}>
-            <AccordionHeader onClick={() => handleOpen(1)}>
+      <Search></Search>
+      
+      <br></br>
+      <br></br>
+      
+      <Fragment>
+        <Accordion open={open === 1} icon={<Icon id={1} open={open} />} >
+          <AccordionHeader className="flex justify-center" onClick={() => handleOpen(1)}>
+            <Typography variant="h2" color="black" className="mb-2">
               Listado de Pokemon
-            </AccordionHeader>
-            <AccordionBody>
-            
-              {pokemonData.map((pokemon) => {
-                return (<><div class= "flex flex-row"><div class="basis 1/4">
-                  <Link href={{
-                    pathname: '/pokemon/[name]',
-                    query: { name: pokemon.name }
-                  }}>
-                    <Card className="w-40">
-                      <CardHeader floated={false} className="h-50">
-                        <Image src={pokemon.image} alt={pokemon.name} height="100" width={100} />
-                      </CardHeader>
-                      <CardBody className="text-center">
-                        <Typography variant="h4" color="blue-gray" className="mb-2">
-                          {pokemon.name}
-                        </Typography>
-                        <Typography color="blue" className="font-medium" textGradient>
-                          {pokemon.types.map((poke, index) => <h4 key={index}>{poke.type.name}</h4>)
-                          }
-                        </Typography>
-                      </CardBody>
-                    </Card>  
-                  </Link>
-                  </div></div>
-                </>)
-              })}
-            </AccordionBody>
-          </Accordion>
-        </Fragment>
-        <br></br>
-        <br></br>
-        <PokemonList></PokemonList>
-      </div>
-    </ThemeProvider>
+            </Typography>
+          </AccordionHeader>
+          <AccordionBody>
+            <div className="listado">
+              <ul>
+                {pokemonData.map((pokemon) => (
+                  <li key={pokemon.id}>
+                    <Link href={{
+                      pathname: '/pokemon/[name]',
+                      query: { name: pokemon.name }
+                    }}>
+                      <div className={`${styles.card} ${pokemon.types[0].type.name}`}>
+                        <div className={styles.nombreTipos}>
+                          <h3 exit={{ opacity: 0 }}>{pokemon.name}</h3>
+                          <div className={styles.tipos}>
+                            {pokemon.types.map((poke, index) => {
+                              return (<div key={index} className={styles.tipo}>{poke.type.name}</div>)
+                            })
+                            }
+                          </div>
+                        </div>
+                      </div>
+                      <img src={pokemon.image} alt={pokemon.name} width={100} height={100} className={styles.image} />
+                    </Link>
+                  </li>)
+                )}
 
+              </ul>
+            </div>
+          </AccordionBody>
+        </Accordion>
+      </Fragment >
+      <br></br>
+      <br></br>
+      <PokemonList></PokemonList>    
+    </div >
   )
 }
 
@@ -86,7 +95,7 @@ export async function getServerSideProps() {
       .then(data => data)
   }
 
-  for (let i = 1; i <= 20; i++) {
+  for (let i = 1; i <= 25; i++) {
     let data = await getPokemon(i)
     arrayPokemon.push(data)
   }

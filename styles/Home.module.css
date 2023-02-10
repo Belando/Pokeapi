@@ -1,0 +1,36 @@
+.ficha {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.card {
+    display: flex;
+    padding: 15px 10px 15px 15px;
+    border-radius: 20px;
+    position: relative;
+    min-height: 100px;
+}
+
+.card .types {
+    display: flex;
+    flex-shrink: wrap;
+    flex-direction: column;
+}
+
+.card .image {
+    position: absolute;
+    right: -15px;
+    top: 10px;
+}
+
+.nameTypes {
+    display: flex;
+    flex-direction: column;
+}
+
+.nameTypes h3 {
+    margin: 0;
+    color: #fff;
+    text-transform: capitalize;
+}
