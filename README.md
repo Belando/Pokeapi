@@ -55,6 +55,7 @@ Se pide una aplicación que use la PokeApi® en la que se cumplan los siguientes
 
 ## Mejoras a realizar y fallos conocidos: 📌
 - Botones de vista previa y siguiente no muestran correctamente los datos 
+- Errores sobre la hidratación al recargar la página de los detalles 
 - Mejora estética de la parte del detalle
 
 ### Ha sido una experiencia enriquecedora en la que seguiré trabajando, si te ha gustado deja tu feedback y muchas gracias!! ✨
