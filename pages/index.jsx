@@ -61,7 +61,7 @@ export default function Home({ pokemonData }) {
     setPage(page - 1);
   };
 
-  console.log(handleNextClick())
+  // console.log(handleNextClick())
 
 
   return (
