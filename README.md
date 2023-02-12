@@ -18,18 +18,19 @@ Se pide una aplicación que use la PokeApi® en la que se cumplan los siguientes
 - Sección Marquee en el Header 
 - Barra de búsqueda por nombre con errores 
 - Listado de pokemon con componente Accordion para poder plegarlo 
-- Botones de navegación hacia la siguiente página o la anterior
+- Botones de navegación hacia la siguiente página o la anterior(Working on it)
 
 ### Vista detalle [name].jsx:
 ![alt text](https://i.gyazo.com/5978dc1fabd6f65a8bbc68201d3d3f5e.png)
 - Configurado para mostrar en http://localhost:3000/name
 - Sección Marquee en el Header, dice el nombre del Pokemon
-- Botón para volver a la vista principal
+- Botones para volver a la vista principal y para movernos al pokemon anterior/siguiente
 ### Vista detalle [name].jsx - Parte 2:
 ![alt_text](https://i.gyazo.com/ca599bababeec5ada40626d86fc3a054.png)
 - Estadísticas y habilidades del pokémon
 - Listado de movimientos del pokemon con componente Accordion para plegarlo
 - Información de la comida recomendada para el pokemon
+- Botones para volver a la vista principal y para movernos al pokemon anterior/siguiente
 
 ## Estructura: Componentes ⚙
 ### Búsqueda index.jsx:
@@ -54,9 +55,7 @@ Se pide una aplicación que use la PokeApi® en la que se cumplan los siguientes
 - Typography: estilos para ciertos elementos
 
 ## Mejoras a realizar y fallos conocidos: 📌
-- Botones de vista previa y siguiente no muestran correctamente los datos 
-- Botones de anterior pokémon y siguiente no muestran correctamente los datos 
-- Solucionados los errores sobre hidratación al recargar la página de los detalles
-- Vista estética de la vista detalle mejorada (botón acorde al tema de la página)
+- Botones de vista previa y siguiente no muestran correctamente los datos
+- Mejora estética de la página detalle
 
 ### Deja tu feedback para seguir mejorando y gracias!! ✨

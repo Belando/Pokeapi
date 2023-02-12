@@ -37,10 +37,7 @@ export default function Home({ pokemonData }) {
 
       <br></br>
       <br></br>
-
       <Search></Search>
-
-      <br></br>
       <br></br>
 
       <Fragment>
@@ -54,7 +51,7 @@ export default function Home({ pokemonData }) {
             <div className="listado">
               <ul>
                 {pokemonData.map((pokemon) => (
-                  <div key={pokemon.id}>
+                  <li key={pokemon.id}>
                     <Link href={{
                       pathname: '/pokemon/[name]',
                       query: { name: pokemon.name }
@@ -72,7 +69,7 @@ export default function Home({ pokemonData }) {
                         <img src={pokemon.image} alt={pokemon.name} width={100} height={60} className={styles.image} />
                       </div>
                     </Link>
-                  </div>)
+                  </li>)
                 )}
 
               </ul>

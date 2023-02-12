@@ -9,13 +9,9 @@ import { Accordion, AccordionHeader, AccordionBody, Typography, Button, } from "
 export default function Pokemon({ data }) {
 
     const [open, setOpen] = useState(0);
-
     const handleOpen = (value) => {
         setOpen(open === value ? 0 : value);
     };
-
-    const nextPoke = data.name +1
-    const previousPoke = data.name -1
 
     function Icon({ id, open }) {
         return (
@@ -39,23 +35,23 @@ export default function Pokemon({ data }) {
             <br></br>
             <br></br>
             <div className="flex justify-center space-x-1">
-            <Button className="flex" type="submit" color="purple">
-                <Link scroll={false} style={{ height: "20px", width: "70px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={`/pokemon/${previousPoke}`}>
-                    Anterior
-                </Link>
-            </Button>
+                <Button className="flex" type="submit" color="purple">
+                    <Link scroll={false} style={{ height: "20px", width: "70px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={`/pokemon/${data.id - 1}`}>
+                        Anterior
+                    </Link>
+                </Button>
                 <Button className="flex" type="submit" color="purple"><Link scroll={false} style={{ height: "20px", width: "100px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={{
                     pathname: '/',
                     as: '/'
                 }}>Volver</Link>
                 </Button>
                 <Button className="flex" type="submit" color="purple">
-                <Link scroll={false} style={{ height: "20px", width: "70px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={`/pokemon/${nextPoke}`}>
-                    Siguiente
-                </Link>
-            </Button>
+                    <Link scroll={false} style={{ height: "20px", width: "70px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={`/pokemon/${data.id + 1}`}>
+                        Siguiente
+                    </Link>
+                </Button>
             </div>
-            
+
             <br></br>
             <div className="flex flex-col justify-center">
                 <div className="detail flex flex-col items-center">
@@ -137,31 +133,31 @@ export default function Pokemon({ data }) {
             <br></br>
 
             <div className="detail flex flex-col items-center">
-            <br></br>
+                <br></br>
                 <div className="frase2 flex flex-col items-center space-y-2 ">
                     <span>Nuestro plato para <b>{data.name}</b> es</span>
-                    
+
                     <RandomMeal />
                 </div>
-                
+
             </div>
             <br></br>
             <div className="flex justify-center space-x-1">
-            <Button className="flex" type="submit" color="purple">
-                <Link scroll={false} style={{ height: "20px", width: "70px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={`/pokemon/${previousPoke}`}>
-                    Anterior
-                </Link>
-            </Button>
+                <Button className="flex" type="submit" color="purple">
+                    <Link scroll={false} style={{ height: "20px", width: "70px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={`/pokemon/${data.id - 1}`}>
+                        Anterior
+                    </Link>
+                </Button>
                 <Button className="flex" type="submit" color="purple"><Link scroll={false} style={{ height: "20px", width: "100px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={{
                     pathname: '/',
                     as: '/'
                 }}>Volver</Link>
                 </Button>
                 <Button className="flex" type="submit" color="purple">
-                <Link scroll={false} style={{ height: "20px", width: "70px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={`/pokemon/${nextPoke}`}>
-                    Siguiente
-                </Link>
-            </Button>
+                    <Link scroll={false} style={{ height: "20px", width: "70px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={`/pokemon/${data.id + 1}`}>
+                        Siguiente
+                    </Link>
+                </Button>
 
             </div>
             <br></br>
