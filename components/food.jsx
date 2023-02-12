@@ -16,7 +16,7 @@ const RandomMeal = () => {
     <div className='frase'>
       {meal && (
         <>
-          <p>{meal.strMeal} !!</p>
+          <span>{meal.strMeal} !!</span>
           {meal.strCategory} típico de {meal.strArea}
           <img className='comida' src={meal.strMealThumb} alt={meal.strMeal} style={{
         display: "block",

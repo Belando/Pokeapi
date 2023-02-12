@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from "next/image";
 import styles from "../../styles/Home.module.css"
 import RandomMeal from "@/components/food";
-import { Accordion, AccordionHeader, AccordionBody, Typography, } from "@material-tailwind/react";
+import { Accordion, AccordionHeader, AccordionBody, Typography, Button, } from "@material-tailwind/react";
 
 
 export default function Pokemon({ data }) {
@@ -13,6 +13,9 @@ export default function Pokemon({ data }) {
     const handleOpen = (value) => {
         setOpen(open === value ? 0 : value);
     };
+
+    const nextPoke = data.name +1
+    const previousPoke = data.name -1
 
     function Icon({ id, open }) {
         return (
@@ -35,104 +38,135 @@ export default function Pokemon({ data }) {
             <marquee style={{ height: 30, fontSize: "20px", background: '#f1f1f1', color: 'purple' }}>&bull; 📑 Listado de Pokémon &bull; 📟 PokeApi &bull; 👁‍🗨{data.name} &bull;  </marquee>
             <br></br>
             <br></br>
-            <div>
-                <div className="button2">
-                    <Link scroll={false} href={{
-                        pathname: '/',
-                        as: '/'
-                    }}>
-                        <svg width="60" height="60" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 2L2 12.5L16 23.5" stroke="purple" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        Volver
-                    </Link>
+            <div className="flex justify-center space-x-1">
+            <Button className="flex" type="submit" color="purple">
+                <Link scroll={false} style={{ height: "20px", width: "70px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={`/pokemon/${previousPoke}`}>
+                    Anterior
+                </Link>
+            </Button>
+                <Button className="flex" type="submit" color="purple"><Link scroll={false} style={{ height: "20px", width: "100px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={{
+                    pathname: '/',
+                    as: '/'
+                }}>Volver</Link>
+                </Button>
+                <Button className="flex" type="submit" color="purple">
+                <Link scroll={false} style={{ height: "20px", width: "70px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={`/pokemon/${nextPoke}`}>
+                    Siguiente
+                </Link>
+            </Button>
+            </div>
+            
+            <br></br>
+            <div className="flex flex-col justify-center">
+                <div className="detail flex flex-col items-center">
+                    <br></br>
+                    <Typography variant="h1" color="black" className="mb-2">
+                        {data.name}
+                    </Typography>
+                    <Typography variant="small" color="black" className="mb-2">
+                        #00{data.id}
+                    </Typography>
+                    <Typography color="blue" className="font-medium" variant="h4" textGradient>
+                        <div className={styles.types}>
+                            {data.types.map((poke, index) => <div key={index} className={styles.type2}>{poke.type.name}</div>)}
+                        </div>
+                    </Typography>
+                    <Typography color="blue" variant="small" className="font-medium" >
+                        {data.weight} Kg
+                    </Typography>
+
+                    <Image src={data.sprites.other.dream_world.front_default} alt={data.name} height="200" width={400} />
+                    <br></br>
                 </div>
-                <div className="flex flex-col justify-center">
-                    <div className="detail flex flex-col items-center">
-                        <br></br>
-                        <Typography variant="h1" color="black" className="mb-2">
-                            {data.name}
+                <br></br>
+                <div className="detail flex flex-col items-center">
+                    <br></br>
+                    <Typography variant="h2" color="black" className="mb-2">
+                        Estadísticas
+                    </Typography>
+                    <div className="flex flex-row items-center ">
+                        <Typography color="blue" variant="h5" className="font-medium" textGradient>
+                            {data.stats.map((data, index) => (
+                                <p key={index}>
+                                    {data.stat.name}
+                                </p>))}
                         </Typography>
-                        <Typography variant="small" color="black" className="mb-2">
-                            #00{data.id}
+                        <Typography color="purple" variant="h5" className="font-medium" textGradient>
+                            {data.stats.map((data, index) => (
+                                <p key={index}>
+                                    {data.base_stat}
+                                </p>))}
                         </Typography>
-                        <Typography color="blue" className="font-medium" variant="h4" textGradient>
-                            <div className={styles.types}>
-                                {data.types.map((poke, index) => <div key={index} className={styles.type2}>{poke.type.name}</div>)}
-                            </div>
-                        </Typography>
-                        <Typography color="blue" variant="small" className="font-medium" >
-                            {data.weight} Kg
-                        </Typography>
-                        
-                        <Image src={data.sprites.other.dream_world.front_default} alt={data.name} height="200" width={400} />
-                        <br></br>
                     </div>
                     <br></br>
-                    <div className="detail flex flex-col items-center">
-                        <br></br>
-                        <Typography variant="h2" color="black" className="mb-2">
-                            Estadísticas
-                        </Typography>
-                        <div className="flex flex-row items-center ">
-                            <Typography color="blue" variant="h5" className="font-medium" textGradient>
-                                {data.stats.map((data, index) => (
-                                    <div key={index}>
-                                        <h3>{data.stat.name}</h3>
-                                    </div>))}
-                            </Typography>
-                            <Typography color="purple" variant="h5" className="font-medium" textGradient>
-                                {data.stats.map((data, index) => (
-                                    <div key={index}>
-                                        <p>{data.base_stat}</p>
-                                    </div>))}
-                            </Typography>
-                        </div>
-                        <br></br>
-                        <Typography variant="h3" color="black" className="mb-2">
-                            Habilidades
-                        </Typography>
-                        <Typography color="blue" variant="h5" className="font-medium" textGradient>
-                            {data.abilities.map((data, index) => (
-                                <div key={index}>
-                                    {data.ability.name}
-                                </div>))}
-                        </Typography>
-                        <br></br>
-                        <Fragment>
-                            <Accordion open={open === 1} icon={<Icon id={1} open={open} />} >
-                                <AccordionHeader className="flex justify-center" onClick={() => handleOpen(1)}>
-                                    <Typography variant="h3" color="black" className="mb-2">
-                                        Movimientos
-                                    </Typography>
-                                </AccordionHeader>
-                                <AccordionBody>
-                                    <Typography color="blue" variant="small" className="font-medium" >
-                                        <div className="listado" >
-                                            <ul>
-                                                {data.moves.map((data, index) => (
-                                                    <li key={index}>
-                                                        {data.move.name}
-                                                    </li>))}
-                                            </ul>
-                                        </div>
-                                    </Typography>
-                                </AccordionBody>
-                            </Accordion>
-                        </Fragment >
+                    <Typography variant="h3" color="black" className="mb-2">
+                        Habilidades
+                    </Typography>
+                    <Typography color="blue" variant="h5" className="font-medium" textGradient>
+                        {data.abilities.map((data, index) => (
+                            <p key={index}>
+                                {data.ability.name}
+                            </p>))}
+                    </Typography>
+                    <br></br>
+                    <Fragment>
+                        <Accordion open={open === 1} icon={<Icon id={1} open={open} />} >
+                            <AccordionHeader className="flex justify-center" onClick={() => handleOpen(1)}>
+                                <Typography variant="h3" color="black" className="mb-2">
+                                    Movimientos
+                                </Typography>
+                            </AccordionHeader>
+                            <AccordionBody>
 
-                    </div>
-                </div>
-                <br></br>
+                                <div className="listado" >
+                                    <ul>
+                                        {data.moves.map((data, index) => (
+                                            <li key={index}>
+                                                <Typography color="blue" variant="small" className="font-medium" >{data.move.name}</Typography>
+                                            </li>))}
+                                    </ul>
+                                </div>
 
-                <div className="detail flex flex-col items-center">
-                    <div className="frase2 flex flex-col items-center">
-                        <span>Nuestro plato para <b>{data.name}</b> es</span><RandomMeal />
-                    </div>
+                            </AccordionBody>
+                        </Accordion>
+                    </Fragment >
+
                 </div>
-                <br></br>
+
             </div>
+            <br></br>
+
+            <div className="detail flex flex-col items-center">
+            <br></br>
+                <div className="frase2 flex flex-col items-center space-y-2 ">
+                    <span>Nuestro plato para <b>{data.name}</b> es</span>
+                    
+                    <RandomMeal />
+                </div>
+                
+            </div>
+            <br></br>
+            <div className="flex justify-center space-x-1">
+            <Button className="flex" type="submit" color="purple">
+                <Link scroll={false} style={{ height: "20px", width: "70px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={`/pokemon/${previousPoke}`}>
+                    Anterior
+                </Link>
+            </Button>
+                <Button className="flex" type="submit" color="purple"><Link scroll={false} style={{ height: "20px", width: "100px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={{
+                    pathname: '/',
+                    as: '/'
+                }}>Volver</Link>
+                </Button>
+                <Button className="flex" type="submit" color="purple">
+                <Link scroll={false} style={{ height: "20px", width: "70px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} href={`/pokemon/${nextPoke}`}>
+                    Siguiente
+                </Link>
+            </Button>
+
+            </div>
+            <br></br>
         </div>
+
     )
 }
 
