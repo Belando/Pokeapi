@@ -13,7 +13,7 @@ Se pide una aplicación que use la PokeApi® en la que se cumplan los siguientes
 
 ## Estructura: Pages 📖
 ### Vista principal index.jsx:
-![alt text](https://i.gyazo.com/694d20b98399746d3532333fae6d20af.png)
+![alt text](https://i.gyazo.com/cfec4aa9df2bde1ce42bc82440347ebe.png)
 - Configurado para mostrar en http://localhost:3000/
 - Sección Marquee en el Header 
 - Barra de búsqueda por nombre con errores 
@@ -21,12 +21,12 @@ Se pide una aplicación que use la PokeApi® en la que se cumplan los siguientes
 - Botones de navegación hacia la siguiente página o la anterior(Working on it)
 
 ### Vista detalle [name].jsx:
-![alt text](https://i.gyazo.com/5978dc1fabd6f65a8bbc68201d3d3f5e.png)
+![alt text](https://i.gyazo.com/759dfcbf9fb6c8a3c2f305ec516e1348.png)
 - Configurado para mostrar en http://localhost:3000/name
 - Sección Marquee en el Header, dice el nombre del Pokemon
 - Botones para volver a la vista principal y para movernos al pokemon anterior/siguiente
 ### Vista detalle [name].jsx - Parte 2:
-![alt_text](https://i.gyazo.com/ca599bababeec5ada40626d86fc3a054.png)
+![alt_text](https://i.gyazo.com/2fd5ca13c22fc35e1ce9f9fc26a792a7.png)
 - Estadísticas y habilidades del pokémon
 - Listado de movimientos del pokemon con componente Accordion para plegarlo
 - Información de la comida recomendada para el pokemon
@@ -34,7 +34,7 @@ Se pide una aplicación que use la PokeApi® en la que se cumplan los siguientes
 
 ## Estructura: Componentes ⚙
 ### Búsqueda index.jsx:
-![alt_text](https://i.gyazo.com/74bec1e68a67b4ab6b7b39cd2c875c61.png)
+![alt_text](https://i.gyazo.com/fdd4427ce321f2162f90cd45b8b3a4f8.png)
 - Búsqueda por nombre, el cual tiene que ser exacto
 - Si el resultado no coincide salta un mensaje de error
 - Si no se busca nada el botón queda inutilizado
