@@ -2,9 +2,9 @@ import React from "react"
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 import Search from "@/components/search"
-import { Fragment, useState } from "react";
-import { Accordion, AccordionHeader, AccordionBody, Typography } from "@material-tailwind/react";
-import PokemonList from "@/components/next";
+import { Fragment, useState, useEffect } from "react";
+import { Accordion, AccordionHeader, AccordionBody, Typography, Button } from "@material-tailwind/react";
+
 
 export default function Home({ pokemonData }) {
 
@@ -29,6 +29,39 @@ export default function Home({ pokemonData }) {
       </svg>
     );
   }
+
+  const [page, setPage] = useState(1);
+  const [pokemon, setPokemon] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(
+        `https://pokeapi.co/api/v2/pokemon?offset=${(page - 1) * 20}&limit=20`
+      );
+      const data = await res.json();
+
+      setPokemon(data.results);
+    };
+
+    fetchData();
+  }, [page]);
+
+  const handleNextClick = async () => {
+      return fetch(`https://pokeapi.co/api/v2/pokemon?offset=${(page) * 20}&limit=20`)
+        .then(res => res.json())
+        .then(data => data.results) 
+  };
+
+  const handlePrevClick = async () => {
+    const res = await fetch(
+      `https://pokeapi.co/api/v2/pokemon?offset=${(page - 2) * 20}&limit=20`
+    );
+    const data = await res.json();
+    setPokemon(data.results);
+    setPage(page - 1);
+  };
+
+  console.log(handleNextClick())
 
 
   return (
@@ -79,7 +112,10 @@ export default function Home({ pokemonData }) {
       </Fragment >
       <br></br>
       <br></br>
-      <PokemonList></PokemonList>
+      <div>
+        <Button size="md" color="purple" onClick={handlePrevClick}>Anterior</Button>
+        <Button size="md" color="purple" onClick={handleNextClick}>Siguiente</Button>
+      </div>
     </div >
   )
 }

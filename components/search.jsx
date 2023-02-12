@@ -5,6 +5,7 @@ import { Alert } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
 import { Card, CardHeader, CardBody, Typography, } from "@material-tailwind/react";
 import Image from "next/image";
+import styles from "../styles/Home.module.css"
 
 const Search = () => {
     const [pokemon, setPokemon] = useState(null);
@@ -20,8 +21,8 @@ const Search = () => {
         try {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
             if (!response.ok) {
-                setError(<Alert className="flex justify-center"style={{marginLeft: "auto", marginRight: "auto",  width: "100%"}} icon={
-                    <svg 
+                setError(<Alert className="flex justify-center" style={{ marginLeft: "auto", marginRight: "auto", width: "100%" }} icon={
+                    <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -31,7 +32,7 @@ const Search = () => {
                         <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 } color="red">No existen Pokémons con ese nombre</Alert>);
                 return;
@@ -46,7 +47,7 @@ const Search = () => {
     return (
         <div className="flex w-72 flex-col justify-center gap-1">
             <form className="flex justify-center" onSubmit={handleSubmit}>
-                <Input color="purple" label="Busca tu pokémon" type="text" value={name} style={{ backgroundColor: "white", padding: "10px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto"}} onChange={e => setName(e.target.value)} />
+                <Input color="purple" label="Busca tu pokémon" type="text" value={name} style={{ backgroundColor: "white", padding: "10px", borderRadius: "5px", marginLeft: "auto", marginRight: "auto" }} onChange={e => setName(e.target.value)} />
                 <Button className="center-button" type="submit" color="purple">Buscar</Button>
             </form>
             {error && (
@@ -56,16 +57,22 @@ const Search = () => {
                 <Link href={{
                     pathname: '/pokemon/[name]',
                     query: { name: pokemon.name }
-                }}>
-                    <Card className="w-60">
-                            <Image src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} height="200" width={200} />
-                        <CardBody className="text-center">
-                            <Typography variant="h4" color="blue-gray" className="mb-2">
-                                {pokemon.name}
+                }}>            
+                    <Card className={`${styles.card} ${pokemon.types[0].type.name}`}>
+                        <br></br>
+                        <Typography variant="h4" color="white" className="mb-2">
+                            {pokemon.name}
                             </Typography>
+                        <Image src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} className={styles.image2} height="250" width={250} />
+                        <CardBody className="text-center">
                             <Typography color="blue" className="font-medium" textGradient>
-                                {pokemon.types.map((pokemon, index) => <h4 key={index}>{pokemon.type.name}</h4>)
-                                }
+                                <div className={styles.nameTypes}>
+                                    <div className={styles.types}>
+                                        {pokemon.types.map((poke, index) => {
+                                            return (<div key={index} className={styles.type}>{poke.type.name}</div>)
+                                        })}
+                                    </div>
+                                </div>
                             </Typography>
                         </CardBody>
                     </Card>
