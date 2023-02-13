@@ -63,9 +63,13 @@ export default function Pokemon({ data }) {
                         #00{data.id}
                     </Typography>
                     <Typography color="blue" className="font-medium" variant="h4" textGradient>
-                        <div className={styles.types}>
-                            {data.types.map((poke, index) => <div key={index} className={styles.type2}>{poke.type.name}</div>)}
-                        </div>
+                    <div className={styles.nameTypes}>
+                                    <div className={styles.types}>
+                                        {data.types.map((poke, index) => 
+                                            <div key={index} className={styles.type}>{poke.type.name}</div>
+                                        )}
+                                    </div>
+                                </div>
                     </Typography>
                     <Typography color="blue" variant="small" className="font-medium" >
                         {data.weight} Kg
